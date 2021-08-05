@@ -1,19 +1,13 @@
 import React from "react";
 
-export default function Button(props) {
-  const styles = { backgroundColor: "red", fontSize: "2rem", padding: "1rem" };
+export default function Button({ name: buttonName = "Button", ...rest }) {
+  let styles = { backgroundColor: "red", fontSize: "2rem", padding: "1rem" };
 
-  if (true) {
-    styles.border = "2px yellow solid";
-  }
-
-  const action = () => {
-    alert(props.name);
-  };
+  styles = { ...styles, border: "2px yellow solid" };
 
   return (
-    <button onClick={action} style={styles} type="button">
-      {props.name}
+    <button {...rest} style={styles} type="button">
+      {buttonName}
     </button>
   );
 }

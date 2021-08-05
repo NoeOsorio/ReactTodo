@@ -1,12 +1,33 @@
+import React, { useState } from "react";
+
 import "./App.css";
-import Botoncito, { ButtonSimple } from "./Button";
+import Botoncito from "./Button";
 
 function App() {
+  const [login, setLogin] = useState(true); //bool
+  console.log(login);
+
+  const buttons = [
+    <Botoncito name="Register" onClick={() => setLogin(!login)} />,
+    <Botoncito name="Register" onClick={() => setLogin(!login)} />,
+    <Botoncito name="Register" onClick={() => setLogin(!login)} />,
+    <Botoncito name="Register" onClick={() => setLogin(!login)} />,
+    <Botoncito name="Register" onClick={() => setLogin(!login)} />,
+    <Botoncito name="Register" onClick={() => setLogin(!login)} />,
+    <Botoncito name="Register" onClick={() => setLogin(!login)} />,
+    <Botoncito name="Register" onClick={() => setLogin(!login)} />,
+  ];
+
   return (
     <div className="App">
       <main>
-        <Botoncito name="Login" />
-        <ButtonSimple name="Registrate" />
+        {login ? (
+          <Botoncito name="Login" onClick={() => setLogin(!login)} />
+        ) : (
+          <Botoncito name="Register" onClick={() => setLogin(!login)} />
+        )}
+
+        {buttons.map((button) => button)}
       </main>
     </div>
   );
