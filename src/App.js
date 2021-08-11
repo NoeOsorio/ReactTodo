@@ -4,10 +4,16 @@ import "./App.css";
 import Botoncito from "./Button";
 import getList from "./Provider";
 import Pokemon from "./Pokemon";
+import { useDispatch, useSelector } from "react-redux";
+import { setPokemons } from "./redux/reducers/pokemonReducer";
 
 function App() {
   const [login, setLogin] = useState(true); //bool
-  const [pokemons, setPokemons] = useState([]);
+  // const [pokemons, setPokemons] = useState([]);
+  const pokemons = useSelector((state) => state.pokemon);
+  const dispatch = useDispatch();
+
+  console.table(pokemons);
 
   // // Callback
   // setTimeout(() => {}, 5000); //5 sec
@@ -35,7 +41,7 @@ function App() {
 
   const getListUI = async () => {
     const response = await getList();
-    setPokemons(response.data.results);
+    dispatch(setPokemons(response.data.results));
   };
 
   useEffect(() => {
